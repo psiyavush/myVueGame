@@ -1,0 +1,322 @@
+/* Общие стили всех экранов и главного экрана*/
+@font-face {
+    font-family: "Yanone";
+    src: url(../fonts/YanoneKaffeesatz-Medium.ttf);
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: "Yanone", sans-serif;
+}
+i.fa {
+font-size: 30px;
+margin-right: 10px;
+}
+@keyframes slide {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 0%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+}
+.main {
+    background-image: url(../img/background_main.webp);
+    background-repeat: repeat-x;
+    background-size: cover;
+    animation: slide 90s linear infinite;
+}
+.app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.app__header {
+    background-color: rgba(0,0,0,0.5);
+    border-bottom: 7px solid #fdb54d;
+    min-height: 247px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+}
+.app__logo {
+    padding: 20px 0;
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+}
+.app__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    overflow: auto;
+}
+.app__btn {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 30px;
+    width: 240px;
+    background-color: #1978d3;
+    box-shadow: 0px 7px 0px 0px #01579a;
+    margin: 0 auto;
+    border-radius: 30px;
+    text-decoration: none;
+    font-style: 16px;
+    line-height: 20px;
+    color: #fdb54d;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.app__btn:focus {
+    outline: none;
+}
+/* Стили экрана достижения */
+.achivments .app__body {
+    justify-content: flex-start;
+}
+.app__body-inner {
+    width: 100%;
+    max-width: 375px;
+    margin: 0 auto;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.app__body-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+.app__body-top {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: max-content max-content;
+    place-content: center center;
+    margin-bottom: 20px;
+}
+.app__card {
+    background-color: rgba(0,0,0,0.5);
+    padding: 20px 10px;
+    border: 5px solid rgba(255, 208, 67, 0.5);
+    text-align: center;
+}
+/* Убираем внутренние границы app__card, оставляем только внешние: */
+.app__card:nth-child(1) {
+    border-right: none;
+    border-bottom: none;
+}
+.app__card:nth-child(2) {
+border-left: none;
+border-bottom: none;
+}
+.app__card:nth-child(3) {
+border-right: none;
+border-top: none;
+}
+.app__card:nth-child(4) {
+border-left: none;
+border-top: none;
+}
+.app__card-text {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.app__card-count {
+    font-size: 18px;
+}
+.app__body-middle {
+    margin-bottom: 15px;
+}
+.app_result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    border: 5px solid rgba(1,88,154,0.5);
+    background-color: rgba(25,121,211,0.8);
+    margin-bottom: 7px;
+}
+.app_rules {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 5px 10px;
+    border: 5px solid rgba(1,88,154,0.5);
+    background-color: rgba(25,121,211,0.8);
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+.app_result:last-child {
+    margin-bottom: 0;
+}
+/* Просто с  fa-star стили не применились, поэтому добавил i, чтобы усилить приоритет*/
+i.fa-star {
+    margin-right: 0;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+.app__result-name {
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+.app__result-amount {
+    font-size: 18px;
+}
+.btn__back {
+    width: 70px;
+    height: 70px;
+    box-shadow: none;
+    border-radius: 50%;
+}
+.btn_achivment {
+    background-color: rgba(0,0,0,0.5);
+    border: 5px solid rgba(1,88,154,0.5);
+}
+/* Стили экрана с вопросами */
+.app__header-inner {
+    color: #fff;
+    text-align: center;
+}
+.app__count {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.app__text {
+    font-size: 18px;
+}
+/* Стили экрана с результатом */
+.results .app__body {
+    justify-content: space-between;
+}
+.app__results-inner {
+    color: #fff;
+    padding: 20px;
+}
+.results__title {
+    width: 100%;
+    max-width: 375px;
+    margin: 20px auto;
+    color: #fff;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.5);
+}
+.results__title-text{
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+}
+.results__img {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.results__img img {
+    width: 250px;
+}
+.results__text-box {
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 5px;
+}
+.results__text {
+    margin-bottom: 20px;
+}
+.app.results {
+    animation: slide 90s linear infinite;
+    background-size: cover;
+    background-position: center center;
+}
+/* Фон под каждый результат */
+.app.results[data-town="castle"] {
+    background-image: url(../img/castle.webp);
+    background-size: cover;
+}
+.app.results[data-town="rampart"] {
+    background-image: url(../img/rampart.webp);
+    background-size: cover;
+}
+.app.results[data-town="tower"] {
+    background-image: url(../img/tower.webp);
+    background-size: cover;
+}
+.app.results[data-town="fortress"] {
+    background-image: url(../img/fortress.webp);
+    background-size: cover;
+}
+.app.results[data-town="stronghold"] {
+    background-image: url(../img/stronghold.webp);
+    background-size: cover;
+}
+.app.results[data-town="inferno"] {
+    background-image: url(../img/inferno.webp);
+    background-size: cover;
+}
+.app.results[data-town="necropolis"] {
+    background-image: url(../img/necropolis.webp);
+    background-size: cover;
+}
+.app.results[data-town="dungeon"] {
+    background-image: url(../img/dungeon.webp);
+    background-size: cover;
+}
+.app.results[data-town="conflux"] {
+    background-image: url(../img/conflux.webp);
+    background-size: cover;
+}
+.btn__castle {
+    background-color: #8eb4e3;
+    border: none;
+}
+.btn__rampart {
+    background-color: #c3d69b;
+    border: none;
+}
+.btn__tower {
+    background-color: #376092;
+    border: none;
+    color: white;
+}
+.btn__fortress {
+    background-color: #77933c;
+    border: none;
+}
+.btn__stronghold {
+    background-color: #e46c0a;
+    border: none;
+}
+.btn__inferno {
+    background-color: #953735;
+    border: none;
+}
+.btn__necropolis {
+    background-color: #000000;
+    border: none;
+    color: white;
+}
+.btn__dungeon {
+    background-color: #558ed5;
+    border: none;
+    color: #000;
+}
+.btn__conflux {
+    background-color: #984807;
+    border: none;
+    color: white;
+}

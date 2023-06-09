@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/font-awesome.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Кто я в Heroes of Might and Magic III</title>
+  
+</head>
+<body>
+  
+  <div class="main">
+    <!-- Главный экран -->
+    <div class="app" v-show="showMain">
+      <div class="app__header">
+        <img src="img/logo.png" class="app__logo">
+      </div>
+      <div class="app__body">
+        <button class="app__btn" @click="goToQuestions">
+          <i class="fa fa-play-circle-o" aria-hidden="true"></i>
+          <div class="app__btn-text">Начать</div>
+        </button>
+        <button class="app__btn" @click="goToAchivments">
+          <i class="fa fa-trophy" aria-hidden="true"></i>
+          <div class="app__btn-text">Достижения</div>
+        </button>
+        <button class="app__btn" @click="goToSocial">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          <div class="app__btn-text">Автор</div>
+        </button>
+        <button class="app__btn" @click="goToRules">
+          <i class="fa fa-question-circle" aria-hidden="true"></i>
+          <div class="app__btn-text">Как играть</div>
+        </button>
+        <button class="app__btn btn__sound">
+          <i class="fa fa-volume-off" aria-hidden="true"></i>
+          <div class="app__btn-text">Звук</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Экран с достижениями -->
+    <div class="app achivments" v-show="showAchivments">
+      <div class="app__body">
+        <div class="app__body-inner">
+          <h2 class="app__body-title">
+            <i class="fa fa-trophy" aria-hidden="true"></i>
+            Достижения
+          </h2>
+          <div class="app__body-top">
+            <div class="app__card">
+              <div class="app__card-text">Счёт</div>
+              <div class="app__card-count">{{ totalScore }}</div>
+            </div>
+            <div class="app__card">
+              <div class="app__card-text">Открыто городов</div>
+              <div class="app__card-count">{{ openTowns }}</div>
+            </div>
+            <div class="app__card">
+              <div class="app__card-text">Всего игр</div>
+              <div class="app__card-count">{{ totalGames }}</div>
+            </div>
+            <div class="app__card">
+              <div class="app__card-text">Любимый воин</div>
+              <div class="app__card-count">{{ favoriteTown }}</div>
+            </div>
+          </div>
+          <div class="app__body-middle">
+            <div class="app_result"           
+                 v-for="(town, k) in results"
+                 v-show="showResultTown[k]"
+                 @click="goToResult(k)">
+              <div class="app__result-score">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <div class="app__result-count">{{ town.point*totalGame[k] }}</div>
+              </div>
+              <div class="app__result-name">{{ town.name }}</div>
+              <div class="app__result-amount">{{ totalGame[k] }}</div>
+            </div>
+          </div>
+          <div class="app__body-bottom">
+            <button class="app__btn btn__back btn_achivment" @click="goToMain">
+              <i class="fa fa-reply" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- Экран с вопросами -->
+    <div class="app" v-show="showQuestions">
+      <div class="app__header">
+        <div class="app__header-inner">
+          <div class="app__count"># {{ number+1 }}</div>
+          <div class="app__text">{{ questions[number][0] }}</div>
+        </div>
+      </div>
+      <div class="app__body">
+        <button class="app__btn"
+                v-for="(answer, i) in questions[number][1]"
+                v-on:click="nextQuestions(questions[number][2][i])">
+          <div class="app__btn-text">{{ answer }}</div>
+        </button>
+      </div>
+    </div>
+
+    <!--Экран соц. сетей  -->
+    <div class="app" v-show="showSocial">
+      <div class="app__body">
+        <a target="_blank" href="https://vk.com/pak_s" class="app__btn">
+          <i class="fa fa-vk" aria-hidden="true"></i>
+          <div class="app__btn-text">Vkontakte</div>
+        </a>
+        <a target="_blank" href="https://www.instagram.com/seva_krot/" class="app__btn">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+          <div class="app__btn-text">Instagram</div>
+        </a>
+        <a target="_blank" href="https://www.facebook.com/park.siyavush/" class="app__btn">
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+          <div class="app__btn-text">Facebook</div>
+        </a>
+        <a target="_blank" href="https://t.me/Semen12345" class="app__btn">
+          <i class="fa fa-telegram" aria-hidden="true"></i>
+          <div class="app__btn-text">Telegram</div>
+        </a>
+        <button class="app__btn btn__back" @click="goToMain">
+          <i class="fa fa-reply" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+<!-- Экран вывода результата -->
+    <div class="app results" v-show="showResult" :data-town="resultsTown">
+      <div class="app__body">
+        <div class="app__results-inner">
+          <div class="results__title">
+            <h2 class="results__title-text">{{ results[resultsTown].name }}</h2>
+            </div>
+          <div class="results__img">
+            <img :src="'img/'+resultsTown+'_logo.png'">
+          </div>
+          <div class="results__text-box">
+            <p class="results__text">{{ results[resultsTown].description }}</p>
+            <p class="results__quote">{{ results[resultsTown].quote1 }}</p>
+            <p class="results__quote">{{ results[resultsTown].quote2 }}</p>
+            <p class="results__author">{{ results[resultsTown].author }}</p>
+          </div>
+          <div>
+            <button :class="'app__btn btn__back btn__'+resultsTown" @click="goToAchivments">
+              <i class="fa fa-reply" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Экран с правилами игры -->
+    <div class="app" v-show="showRules">
+      <div class="app__body">
+        <div class="app__body-inner">
+          <h2 class="app__body-title" style="background-color: rgba(0,0,0,0.5); padding: 10px 0;">
+            Правила Игры <br>
+            "Кто я в Heroes of Might and Magic III"
+          </h2>
+          <div class="app_rules">
+            <p>Это игра по открытию городов и главных существ</p>
+            <p>Отвечая на вопросы игры в первый раз, Вы получите Город, Главное существо и Очки достижения</p>
+            <p>Но основная задача, это открытие ВСЕ города и ВСЕХ существ</p>
+            <p>Для этого Вам надо переосмыслить ответы на вопросы и при следующем старте отвечать так, чтобы открывался соответствующий город</p>
+            <p>В зависимости от набранных очков на странице Достижения в графе Любимый воин, Вы сможете узнать, кто Вы в Героях Магии и Меча 3</p>
+          </div>
+          <button class="app__btn btn__back" style="color: aliceblue;" @click="goToMain">
+            <i class="fa fa-reply" aria-hidden="true"></i>
+          </button>
+        </div>
+ 
+      </div>
+    </div>
+
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  <script src="./js/const.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
