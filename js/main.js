@@ -249,7 +249,7 @@
         }
       })
   
-      let audio = new Audio('audio/soundtrack.mp3');
+      let audio = new Audio('https://goroskoptop.ru/wp-content/soundtrack.mp3');
       let audio_btn = document.querySelector('.btn__sound');
       let audio_icon = document.querySelector('.btn__sound i');
   
