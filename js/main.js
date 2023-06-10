@@ -225,7 +225,7 @@
           audio.muted = false;
           audio.play();
           audio.loop = true;
-          audio.volume = 0.1;
+          audio.volume = 0.2;
           audio_icon.classList.add('fa-volume-up');
           audio_icon.classList.remove('fa-volume-off');
         } else if(!audio.muted){
