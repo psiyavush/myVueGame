@@ -9,12 +9,9 @@
   <link rel="stylesheet" href="./css/font-awesome.min.css">
   <link rel="stylesheet" href="./css/style.css">
   <title>Кто я в Heroes of Might and Magic III</title>
-  
 </head>
 <body>
-  
-  <div class="main">
-    <!-- Главный экран -->
+   <div class="main">
     <div class="app" v-show="showMain">
       <div class="app__header">
         <img src="img/logo.png" class="app__logo">
@@ -42,8 +39,6 @@
         </button>
       </div>
     </div>
-
-    <!-- Экран с достижениями -->
     <div class="app achivments" v-show="showAchivments">
       <div class="app__body">
         <div class="app__body-inner">
@@ -90,9 +85,6 @@
         </div>
       </div>
     </div>
-
-
-<!-- Экран с вопросами -->
     <div class="app" v-show="showQuestions">
       <div class="app__header">
         <div class="app__header-inner">
@@ -108,8 +100,6 @@
         </button>
       </div>
     </div>
-
-    <!--Экран соц. сетей  -->
     <div class="app" v-show="showSocial">
       <div class="app__body">
         <a target="_blank" href="https://vk.com/pak_s" class="app__btn">
@@ -133,8 +123,6 @@
         </button>
       </div>
     </div>
-
-<!-- Экран вывода результата -->
     <div class="app results" v-show="showResult" :data-town="resultsTown">
       <div class="app__body">
         <div class="app__results-inner">
@@ -158,8 +146,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Экран с правилами игры -->
     <div class="app" v-show="showRules">
       <div class="app__body">
         <div class="app__body-inner">
@@ -181,9 +167,7 @@
  
       </div>
     </div>
-
   </div>
-  
   <script src="./js/vue.js"></script>
   <script src="./js/const.js"></script>
   <script src="js/main.js"></script>

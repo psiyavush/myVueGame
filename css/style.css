@@ -1,4 +1,3 @@
-/* Общие стили всех экранов и главного экрана*/
 @font-face {
     font-family: "Yanone";
     src: url(../fonts/YanoneKaffeesatz-Medium.ttf);
@@ -82,7 +81,6 @@ margin-right: 10px;
 .app__btn:focus {
     outline: none;
 }
-/* Стили экрана достижения */
 .achivments .app__body {
     justify-content: flex-start;
 }
@@ -115,7 +113,6 @@ margin-right: 10px;
     border: 5px solid rgba(255, 208, 67, 0.5);
     text-align: center;
 }
-/* Убираем внутренние границы app__card, оставляем только внешние: */
 .app__card:nth-child(1) {
     border-right: none;
     border-bottom: none;
@@ -164,7 +161,6 @@ border-top: none;
 .app_result:last-child {
     margin-bottom: 0;
 }
-/* Просто с  fa-star стили не применились, поэтому добавил i, чтобы усилить приоритет*/
 i.fa-star {
     margin-right: 0;
     font-size: 15px;
@@ -188,7 +184,6 @@ i.fa-star {
     background-color: rgba(0,0,0,0.5);
     border: 5px solid rgba(1,88,154,0.5);
 }
-/* Стили экрана с вопросами */
 .app__header-inner {
     color: #fff;
     text-align: center;
@@ -200,7 +195,6 @@ i.fa-star {
 .app__text {
     font-size: 18px;
 }
-/* Стили экрана с результатом */
 .results .app__body {
     justify-content: space-between;
 }
@@ -243,7 +237,6 @@ i.fa-star {
     background-size: cover;
     background-position: center center;
 }
-/* Фон под каждый результат */
 .app.results[data-town="castle"] {
     background-image: url(../img/castle.webp);
     background-size: cover;
